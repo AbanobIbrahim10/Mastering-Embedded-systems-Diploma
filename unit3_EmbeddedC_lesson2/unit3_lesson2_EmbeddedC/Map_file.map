@@ -1,0 +1,90 @@
+Archive member included because of file (symbol)
+
+libmylib.a(library_file.o)    App.o (X_array)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+Mem              0x00000000         0x04000000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0x00010000                . = 0x10000
+
+.STARTUP        0x00010000        0xc
+ Startup.o(.text)
+ .text          0x00010000        0xc Startup.o
+                0x00010000                reset
+
+.TEXT           0x0001000c       0x8c
+ *(.text)
+ .text          0x0001000c       0x24 App.o
+                0x0001000c                main
+ .text          0x00010030       0x68 Uart.o
+                0x00010030                Uart0_Void_TransmitData
+ .text          0x00010098        0x0 libmylib.a(library_file.o)
+
+.glue_7         0x00010098        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x00010098        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x00010098        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x00010098        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x00010098        0x0
+ .iplt          0x00000000        0x0 Startup.o
+
+.igot.plt       0x00010098        0x0
+ .igot.plt      0x00000000        0x0 Startup.o
+
+.DATA           0x00010098       0x64
+ *(.data)
+ .data          0x00010098        0x0 Startup.o
+ .data          0x00010098       0x64 App.o
+                0x00010098                buffer
+ .data          0x000100fc        0x0 Uart.o
+ .data          0x000100fc        0x0 libmylib.a(library_file.o)
+
+.RODATA         0x000100fc       0x14
+ *(.rodata)
+ .rodata        0x000100fc       0x14 libmylib.a(library_file.o)
+                0x000100fc                X_array
+
+.rel.dyn        0x00010110        0x0
+ .rel.iplt      0x00000000        0x0 Startup.o
+                0x00011110                . = (. + 0x1000)
+                0x00011110                stack_pointer = .
+LOAD App.o
+LOAD Startup.o
+LOAD Uart.o
+LOAD libmylib.a
+OUTPUT(ToolchainProject.elf elf32-littlearm)
+
+.bss            0x00010110        0x0 load address 0x00011110
+ .bss           0x00010110        0x0 Startup.o
+ .bss           0x00010110        0x0 App.o
+ .bss           0x00010110        0x0 Uart.o
+ .bss           0x00010110        0x0 libmylib.a(library_file.o)
+
+.ARM.attributes
+                0x00000000       0x2e
+ .ARM.attributes
+                0x00000000       0x22 Startup.o
+ .ARM.attributes
+                0x00000022       0x30 App.o
+ .ARM.attributes
+                0x00000052       0x32 Uart.o
+ .ARM.attributes
+                0x00000084       0x30 libmylib.a(library_file.o)
+
+.comment        0x00000000       0x11
+ .comment       0x00000000       0x11 App.o
+                                 0x12 (size before relaxing)
+ .comment       0x00000000       0x12 Uart.o
+ .comment       0x00000000       0x12 libmylib.a(library_file.o)
