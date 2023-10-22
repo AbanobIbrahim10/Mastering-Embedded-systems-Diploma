@@ -7,7 +7,7 @@ MEMORY
 SECTIONS
 {
     . =0x00010000;
-    .STARTUP :
+    .STARTUP . :
     {
         Startup.o(.text)
     }>Mem
