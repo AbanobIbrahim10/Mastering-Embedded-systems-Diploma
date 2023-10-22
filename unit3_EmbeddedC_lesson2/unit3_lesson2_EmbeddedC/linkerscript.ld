@@ -1,31 +1,30 @@
-ENTRY(main)
+ENTRY(reset)
 
 MEMORY
 {
-    ROM(rwx):ORIGIN = 0X00000000 ,LENGTH 64M
+    Mem(rwx):ORIGIN = 0X00000000 ,LENGTH =64M
 }
 SECTIONS
 {
-    .=0x00010000;
-    .STARTUP .:
+    . =0x00010000;
+    .STARTUP :
     {
         Startup.o(.text)
-    }
+    }>Mem
     .TEXT :
     {
-        App.o(.text)
-        Uart.o(.text)
-    }>ROM
+        *(.text)
+    }>Mem
     .DATA :
     {
         *(.data)
         
-    }>ROM
+    }>Mem
     .RODATA :
     {
         *(.rodata)
-    }>ROM
+    }>Mem
 
-    .=.+0x1000;
-    stack_pointer=.;
+    . =. + 0x1000 ;
+    stack_pointer =.;
 }
