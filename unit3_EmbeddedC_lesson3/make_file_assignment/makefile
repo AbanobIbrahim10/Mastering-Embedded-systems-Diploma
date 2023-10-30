@@ -8,7 +8,7 @@ OBJ=$(SRC:.c=.o)
 STARTUP= startup.s
 STARTUPOBJ=$(STARTUP:.s=.o)
 
-PROJNAME= Uart_project
+PROJNAME=Uart_project
 
 
 
@@ -17,7 +17,7 @@ $(PROJNAME).bin: $(PROJNAME).elf
 	@echo ---------build is done successfully---------
 
 $(PROJNAME).elf: $(OBJ) $(STARTUPOBJ) $(LIBS)
-	$(CC)ld.exe -T linkerscript.ld App.o Uart.o Startup.o -l:$(LIBS) -o $@ -Map=mapFile.map
+	$(CC)ld.exe -T linkerscript.ld $(OBJ) $(STARTUPOBJ) $(LIBS) -o $@ -Map=mapFile.map
 
 %.o: %.c
 	$(CC)gcc.exe -c $(INCS) $(CFLAGS) $< -o $@
@@ -37,4 +37,4 @@ qemu:$(PROJNAME).bin
 
 
 clear:
-	rm *.o *.bin *.elf *.map *.a
+	rm *.o *.bin *.elf *.map 
