@@ -1,0 +1,2 @@
+../Src/GPIO.c:11:6:GPIO_init	4	static
+../Src/GPIO.c:51:6:Toggle_pin_void	16	static
