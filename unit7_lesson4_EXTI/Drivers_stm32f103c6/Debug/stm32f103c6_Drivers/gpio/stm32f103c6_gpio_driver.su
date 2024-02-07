@@ -1,0 +1,6 @@
+../stm32f103c6_Drivers/gpio/stm32f103c6_gpio_driver.c:23:9:GET_PSITION	24	static
+../stm32f103c6_Drivers/gpio/stm32f103c6_gpio_driver.c:35:6:MCAL_GPIO_Init	24	static
+../stm32f103c6_Drivers/gpio/stm32f103c6_gpio_driver.c:62:6:MCAL_GPIO_Write_Pin	16	static
+../stm32f103c6_Drivers/gpio/stm32f103c6_gpio_driver.c:67:6:MCAL_GPIO_Write_Port	16	static
+../stm32f103c6_Drivers/gpio/stm32f103c6_gpio_driver.c:73:9:MCAL_GPIO_Read_Pin	16	static
+../stm32f103c6_Drivers/gpio/stm32f103c6_gpio_driver.c:79:10:MCAL_GPIO_Read_Port	16	static
